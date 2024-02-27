@@ -3,11 +3,9 @@ package com.example.appsuperhero.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appsuperhero.R
 import com.example.appsuperhero.adapters.SuperheroAdapter
 import com.example.appsuperhero.data.Superhero
@@ -58,14 +56,22 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
 
         val superhero: Superhero = superheroList[position]
 
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("SUPERHERO ID", superhero.id)
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("SUPERHERO_ID", superhero.id)
+        intent.putExtra("SUPERHERO_NAME" , superhero.name)
+        intent.putExtra("SUPERHERO_IMAGE" , superhero.image.url)
+        intent.putExtra("PUBLISHER" , superhero.biography.publisher)
+        intent.putExtra("REAL_NAME", superhero.biography.realName)
+
+
+
         startActivity(intent)
 
 
     }
 
     private fun searchSuperheroes(query: String) {
+
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://superheroapi.com/")
@@ -74,6 +80,8 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
 
         val call: SuperheroesServiceApi = retrofit.create(SuperheroesServiceApi::class.java)
 
+
+
         CoroutineScope(Dispatchers.IO).launch {
             val response = call.searchByName(query)
 
@@ -81,6 +89,8 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
                 if (response.body() != null) {
                     Log.i("HTTP", "Respuesta correcta")
                     adapter.updateItems(response.body()?.results)
+
+
 
                 } else {
                     Log.i("HTTP", "Respuesta incorrecta")

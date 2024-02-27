@@ -16,8 +16,14 @@ class Superhero(
     @SerializedName("id") val id: String,
     @SerializedName("name") val name: String,
     @SerializedName("image") val image: Image,
-    @SerializedName("powerstats") val powerstats: String,
-    @SerializedName("biography") val biography : String
+    @SerializedName("biography") val biography : Biography
+
+) {
+
+}
+class Biography (
+    @SerializedName("full-name") val realName:String,
+    @SerializedName("publisher") val publisher:String
 ) {
 
 }
