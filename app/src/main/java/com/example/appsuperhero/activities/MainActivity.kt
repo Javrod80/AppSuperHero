@@ -3,6 +3,9 @@ package com.example.appsuperhero.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,7 +30,6 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
         }
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
+
     }
 
 
@@ -62,6 +65,9 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
         intent.putExtra("SUPERHERO_IMAGE" , superhero.image.url)
         intent.putExtra("PUBLISHER" , superhero.biography.publisher)
         intent.putExtra("REAL_NAME", superhero.biography.realName)
+        intent.putExtra("OCCUPATION", superhero.work.occupation)
+        intent.putExtra("BASE",superhero.work.base)
+
 
 
 
@@ -88,7 +94,8 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
             runOnUiThread {
                 if (response.body() != null) {
                     Log.i("HTTP", "Respuesta correcta")
-                    adapter.updateItems(response.body()?.results)
+                    superheroList = response.body()?.results.orEmpty()
+                    adapter.updateItems(superheroList)
 
 
 
@@ -98,7 +105,7 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
 
 
                 }
-                //hideKeyboard()
+                hideKeyboard()
             }
         }
     }
@@ -118,10 +125,22 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
         return true
     }
 
-    /*private fun hideKeyboard() {
+    private fun hideKeyboard() {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.viewRoot.windowToken, 0)
-    }*/
+        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
 
 

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">AppSuperHero</string>
     <string name="superhero">superhero</string>
-    <string name="Biography">biography</string>
+    <string name="Biography">Biography</string>
+    <string name="RealName">Real Name</string>
+    <string name="image_sv">image</string>
 </resources>

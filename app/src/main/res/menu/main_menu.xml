@@ -5,13 +5,7 @@
     xmlns:appcompat="http://schemas.android.com/apk/res-auto">
 
 
-    <item
-        android:id="@+id/back"
-        android:title="arrowBack"
-        android:icon="@android:drawable/presence_online"
-        appcompat:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="always"
-        tools:ignore="AlwaysShowAction" />
+
 
 
 </menu>

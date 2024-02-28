@@ -16,7 +16,8 @@ class Superhero(
     @SerializedName("id") val id: String,
     @SerializedName("name") val name: String,
     @SerializedName("image") val image: Image,
-    @SerializedName("biography") val biography : Biography
+    @SerializedName("biography") val biography: Biography,
+    @SerializedName("work") val work : Work
 
 ) {
 
@@ -27,6 +28,10 @@ class Biography (
 ) {
 
 }
+class Work (
+    @SerializedName ("occupation") val occupation : String,
+    @SerializedName ("base") val base : String
+)
 
 class Image(
     @SerializedName("url") val url: String

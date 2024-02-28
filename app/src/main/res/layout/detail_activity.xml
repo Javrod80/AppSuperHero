@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -8,14 +7,14 @@
 
 
     <ImageView
-        android:id="@+id/superheroImageView"
+        android:id="@+id/imageSH"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="IMAGE" />
+        android:contentDescription="@string/image_sv" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -28,15 +27,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textBiography"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textRealName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:gravity="center_horizontal"
-            android:text="@string/Biography"
+            android:text="@string/RealName"
             android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold" />
+
+
+
+        <TextView
+            android:id="@+id/detalle"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            android:textColor="@android:color/holo_blue_dark"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/occupation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="normal"
+            android:textColor="@color/bussinessColor"
+            android:gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/baseOperation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="normal"
+            android:textColor="@android:color/holo_orange_dark"
+            android:gravity="center_horizontal"
+            />
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
