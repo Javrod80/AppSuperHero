@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
     private lateinit var adapter: SuperheroAdapter
     private var superheroList : List <Superhero> = listOf()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
         setContentView(binding.root)
 
         binding.searchView.setOnQueryTextListener(this)
+
+        //binding.iniImage.setImageResource()
 
 
         initRecycledView()
@@ -114,7 +118,7 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
         Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
+    override fun onQueryTextSubmit(query: String?): Boolean { // listener
         if (!query.isNullOrEmpty()) {
             searchSuperheroes(query)
         }
@@ -130,8 +134,7 @@ class MainActivity : AppCompatActivity(), OnQueryTextListener1 {
         imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean { //barra
         when (item.itemId) {
             android.R.id.home -> {
                 finish()
